@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetECommerce.Domain", "D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetECommerce.Infrastructure", "DotNetECommerce.Infrastructure\DotNetECommerce.Infrastructure.csproj", "{7D0AEF34-18F8-4158-B768-CDB93685D07F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetECommerce.Application", "DotNetECommerce.Application\DotNetECommerce.Application.csproj", "{97C1D8D3-A8FA-42CD-AC5E-FA8C430E30D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetECommerce.Application", "DotNetECommerce.Application\DotNetECommerce.Application.csproj", "{97C1D8D3-A8FA-42CD-AC5E-FA8C430E30D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetECommerce.Application.Test", "DotNetECommerce.Application.Test\DotNetECommerce.Application.Test.csproj", "{72B0D4A6-5A81-4C33-A6F5-697F20CBC512}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{97C1D8D3-A8FA-42CD-AC5E-FA8C430E30D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97C1D8D3-A8FA-42CD-AC5E-FA8C430E30D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97C1D8D3-A8FA-42CD-AC5E-FA8C430E30D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72B0D4A6-5A81-4C33-A6F5-697F20CBC512}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72B0D4A6-5A81-4C33-A6F5-697F20CBC512}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72B0D4A6-5A81-4C33-A6F5-697F20CBC512}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72B0D4A6-5A81-4C33-A6F5-697F20CBC512}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
