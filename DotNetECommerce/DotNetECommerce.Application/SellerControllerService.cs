@@ -1,4 +1,6 @@
 ﻿using DotNetECommerce.Domain.Models;
+using DotNetECommerce.Domain.Repositories;
+using DotNetECommerce.Domain.Sellers;
 using DotNetECommerce.Domain.Services;
 using System;
 using System.Collections.Generic;
@@ -19,24 +21,35 @@ namespace DotNetECommerce.Application
 
         public Seller SignUp(string mailAddress, string password, string representativeName, string companyName, string companyAddress, int administratorId)
         {
-            var seller = Seller.SignUp(mailAddress, representativeName, companyName, companyAddress);
-            // TODO: idはGuidに？
             var administrator = administratorRepository.FindBy(administratorId);
 
             if (administrator == null)
             {
-                throw new ArgumentException("管理者が見つかりません");
+                throw new InvalidOperationException("管理者が見つかりません");
             }
 
-            sellerRepository.Create(seller, password, administrator.Id);
+            var seller = Seller.SignUp(mailAddress, representativeName, companyName, companyAddress, administrator);
+
+            sellerRepository.Create(seller, password);
             return seller;
         }
 
         public Seller Approve(int sellerId, int administratorId)
         {
+            var administrator = administratorRepository.FindBy(administratorId);
+
+            if (administrator == null)
+            {
+                throw new InvalidOperationException("管理者が見つかりません");
+            }
             var seller = sellerRepository.FindBy(sellerId);
-            // これはだめ、事前条件の認証などがうまく機能していない
-            seller.Activate();
+
+            if (seller == null)
+            {
+                throw new InvalidOperationException("販売者が見つかりません");
+            }
+
+            seller.Activate(administrator);
             sellerRepository.Save(seller, administratorId);
             return seller;
         }

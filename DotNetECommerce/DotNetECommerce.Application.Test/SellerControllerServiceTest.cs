@@ -8,7 +8,7 @@ namespace DotNetECommerce.Application.Test
     {
         public void TestSignUp()
         {
-            var sellerControllerService = new SellerControllerService();
+            //var sellerControllerService = new SellerControllerService();
 
         }
     }

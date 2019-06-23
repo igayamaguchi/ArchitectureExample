@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DotNetECommerce.Domain.Models
+namespace DotNetECommerce.Domain.Products
 {
     public enum ProductState
     {
-        Sale,
-        BeforeSale,
-        Discontinued,
+        BeforeSale = 0,
+        Sale = 1,
+        Discontinued = 2,
     }
 }

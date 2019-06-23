@@ -1,4 +1,5 @@
 ﻿using DotNetECommerce.Domain.Models;
+using DotNetECommerce.Domain.Sellers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,7 +10,7 @@ namespace DotNetECommerce.Domain.Services
     {
         public void SignUp(Seller seller)
         {
-            seller.SignUp();
+            //seller.SignUp();
         }
     }
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DotNetECommerce.Domain.Models
+namespace DotNetECommerce.Domain
 {
-    public class Member
+    interface IAggregateRoot
     {
     }
 }

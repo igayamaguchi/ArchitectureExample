@@ -1,4 +1,7 @@
 ﻿using DotNetECommerce.Domain.Models;
+using DotNetECommerce.Domain.Products;
+using DotNetECommerce.Domain.Repositories;
+using DotNetECommerce.Domain.Sellers;
 using DotNetECommerce.Domain.Services;
 using System;
 using System.Collections.Generic;
@@ -10,27 +13,30 @@ namespace DotNetECommerce.Application
     {
         private readonly IProductRepository productRepository;
 
-        private readonly ISellService sellService;
+        private readonly ISellerRepository sellerRepository;
 
-        public ProductControllerService(IProductRepository productRepository, ISellService sellService)
+        public ProductControllerService(IProductRepository productRepository, ISellerRepository sellerRepository)
         {
             this.productRepository = productRepository;
-            this.sellService = sellService;
+            this.sellerRepository = sellerRepository;
         }
 
         /// <summary>
         /// 商品の販売
         /// </summary>
-        public SellResultType Sell(SellRequest request, Seller seller)
+        public SellResultType Sell(SellRequest request)
         {
-            var product = productRepository.FindBy(request.ProductId);
+            var seller = sellerRepository.FindBy(request.SellerId);
 
-            if (product == null)
+            if (seller == null || seller.State == SellerState.Available)
             {
+                // TODO: 承認済みでない場合のエラー
                 return SellResultType.NotFound;
             }
 
-            var sellerProduct = sellService.Sell(product);
+            var product = Product.New(request.ProductName, request.ProductPrice, request.ProductPointRate, seller);
+            product.Sell();
+            productRepository.Create(product);
 
             return SellResultType.Ok;
         }
@@ -44,6 +50,12 @@ namespace DotNetECommerce.Application
 
     public class SellRequest
     {
-        public int ProductId { get; set; }
+        public int SellerId { get; set; }
+
+        public string ProductName { get; private set; }
+
+        public decimal ProductPrice { get; private set; }
+
+        public int ProductPointRate { get; private set; }
     }
 }
