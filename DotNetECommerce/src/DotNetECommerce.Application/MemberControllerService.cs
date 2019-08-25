@@ -1,4 +1,5 @@
 ﻿using DotNetECommerce.Domain.Repositories;
+using DotNetECommerce.Domain.Services;
 using DotNetECommerce.ValueObject;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,12 @@ namespace DotNetECommerce.Application
 {
     public class MemberControllerService
     {
-        public IMemberRepository memberRepository { get; private set; }
+        private readonly IMemberService memberService;
+        private readonly IMemberRepository memberRepository;
 
-        public MemberControllerService(IMemberRepository memberRepository)
+        public MemberControllerService(IMemberService memberService, IMemberRepository memberRepository)
         {
+            this.memberService = memberService;
             this.memberRepository = memberRepository;
         }
 
@@ -30,11 +33,33 @@ namespace DotNetECommerce.Application
             memberRepository.Create(m, p);
             return SignUpResult.Success;
         }
+
+        public DeleteResult Delete(string memberId)
+        {
+            // TODO: ログイン状態の確認
+            var id = new MemberId(memberId);
+            var member = memberRepository.FindBy(id);
+
+            if (member != null) return DeleteResult.NotExistMember;
+
+            memberService.Delete(member);
+
+            // TODO: メール通知
+
+            return DeleteResult.Success;
+        }
     }
 
     public enum SignUpResult
     {
-        ExistMember,
         Success,
+        ExistMember,
+    }
+
+    public enum DeleteResult
+    {
+        Success,
+        NotExistMember,
+        AlreadyDeleted,
     }
 }

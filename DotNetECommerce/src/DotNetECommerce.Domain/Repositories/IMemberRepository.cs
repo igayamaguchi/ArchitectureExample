@@ -8,10 +8,14 @@ namespace DotNetECommerce.Domain.Repositories
 {
     public interface IMemberRepository
     {
+        Member FindBy(MemberId mailAddress);
+
         Member FindBy(MailAddress mailAddress);
 
         Member Create(MailAddress mailAddress, Password password);
 
         Member Create(Member member);
+
+        void Delete(Member member);
     }
 }
