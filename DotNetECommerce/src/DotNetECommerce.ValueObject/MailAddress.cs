@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DotNetECommerce.Domain.Sellers
+namespace DotNetECommerce.ValueObject
 {
     public class MailAddress
     {
         private readonly string value;
 
-        public MailAddress(string value)
+        public MailAddress(string mailAddress)
         {
-            if (value.Length == 0)
+            if (mailAddress.Length == 0)
             {
                 throw new ArgumentException();
             }
 
-            this.value = value;
+            this.value = mailAddress;
         }
+
+        public string Value { get => this.value; }
     }
 }

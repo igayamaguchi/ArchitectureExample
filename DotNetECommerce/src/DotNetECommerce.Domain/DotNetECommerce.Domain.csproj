@@ -8,4 +8,8 @@
     <Folder Include="Shared\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DotNetECommerce.ValueObject\DotNetECommerce.ValueObject.csproj" />
+  </ItemGroup>
+
 </Project>
