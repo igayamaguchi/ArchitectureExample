@@ -19,8 +19,12 @@ namespace DotNetECommerce.Domain.Members
 
         public MemberState State { get; private set; }
 
-        public Member()
+        public Member(MailAddress mailAddress, string name, string telephone = null, string address = null)
         {
+            this.MailAddress = mailAddress;
+            this.Name = name;
+            this.Telephone = telephone;
+            this.Address = address;
             this.State = MemberState.Unregistered;
         }
 

@@ -7,6 +7,7 @@ namespace DotNetECommerce.Domain.Services
 {
     public interface IAdministratorRepository
     {
+        void Create(Administrator administrator);
         Administrator FindBy(int id);
     }
 }

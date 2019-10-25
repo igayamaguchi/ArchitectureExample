@@ -42,7 +42,8 @@ namespace DotNetECommerce.Application
 
             if (member != null) return DeleteResult.NotExistMember;
 
-            memberService.Delete(member);
+            member.Delete();
+            memberRepository.Delete(member);
 
             // TODO: メール通知
 

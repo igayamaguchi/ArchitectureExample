@@ -19,17 +19,10 @@ namespace DotNetECommerce.Application
             this.administratorRepository = administratorRepository;
         }
 
-        public Seller SignUp(string mailAddress, string password, string representativeName, string companyName, string companyAddress, int administratorId)
+        public Seller SignUp(string mailAddress, string password, string representativeName, string companyName, string companyAddress)
         {
-            var administrator = administratorRepository.FindBy(administratorId);
-
-            if (administrator == null)
-            {
-                throw new InvalidOperationException("管理者が見つかりません");
-            }
-
-            var seller = Seller.SignUp(mailAddress, representativeName, companyName, companyAddress, administrator);
-
+            var newSellerId = sellerRepository.FindNewId();
+            var seller = Seller.SignUp(newSellerId, mailAddress, representativeName, companyName, companyAddress);
             sellerRepository.Create(seller, password);
             return seller;
         }

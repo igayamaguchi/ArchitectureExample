@@ -14,11 +14,5 @@ namespace DotNetECommerce.Domain.Services
         {
             this.memberRepository = memberRepository;
         }
-
-        public void Delete(Member member)
-        {
-            member.Delete();
-            memberRepository.Delete(member);
-        }
     }
 }

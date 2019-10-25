@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetECommerce.Application
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetECommerce.Application.Test", "test\DotNetECommerce.Application.Test\DotNetECommerce.Application.Test.csproj", "{72B0D4A6-5A81-4C33-A6F5-697F20CBC512}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetECommerce.ValueObject", "src\DotNetECommerce.ValueObject\DotNetECommerce.ValueObject.csproj", "{2BDF1B96-BB3A-4036-9456-B3630E187A9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetECommerce.ValueObject", "src\DotNetECommerce.ValueObject\DotNetECommerce.ValueObject.csproj", "{2BDF1B96-BB3A-4036-9456-B3630E187A9B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1AAEB334-4E46-47BE-B2E0-013687D638E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +50,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{72B0D4A6-5A81-4C33-A6F5-697F20CBC512} = {1AAEB334-4E46-47BE-B2E0-013687D638E1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0F09ADDD-AE6E-4DFE-97D4-54C131CDBBA5}

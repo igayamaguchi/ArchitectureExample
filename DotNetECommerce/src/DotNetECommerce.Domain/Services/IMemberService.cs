@@ -7,6 +7,5 @@ namespace DotNetECommerce.Domain.Services
 {
     public interface IMemberService
     {
-        void Delete(Member member);
     }
 }

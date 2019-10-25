@@ -8,7 +8,9 @@ namespace DotNetECommerce.Domain.Sellers
 {
     public class Seller : IAggregateRoot
     {
-        private readonly string mailAddress;
+        public int SellerId { get; private set; }
+
+        public string MailAddress { get; private set; }
 
         private readonly string representativeName;
 
@@ -22,9 +24,10 @@ namespace DotNetECommerce.Domain.Sellers
 
         public IEnumerable<Product> Products;
 
-        protected Seller(string mailAddress, string representativeName, string companyName, string companyAddress, SellerState state, Administrator administrator)
+        protected Seller(int sellerId, string mailAddress, string representativeName, string companyName, string companyAddress, SellerState state, Administrator administrator)
         {
-            this.mailAddress = mailAddress;
+            this.SellerId = SellerId;
+            this.MailAddress = mailAddress;
             this.representativeName = representativeName;
             this.companyName = companyName;
             this.companyAddress = companyAddress;
@@ -32,9 +35,9 @@ namespace DotNetECommerce.Domain.Sellers
             this.Administrator = administrator;
         }
 
-        public static Seller SignUp(string mailAddress, string representativeName, string companyName, string companyAddress, Administrator administrator)
+        public static Seller SignUp(int sellerId, string mailAddress, string representativeName, string companyName, string companyAddress)
         {
-            return new Seller(mailAddress, representativeName, companyName, companyAddress, SellerState.Applying, administrator);
+            return new Seller(sellerId, mailAddress, representativeName, companyName, companyAddress, SellerState.Applying, null);
         }
 
         public Seller Activate(Administrator administrator)
