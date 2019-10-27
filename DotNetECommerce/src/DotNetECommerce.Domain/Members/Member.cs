@@ -1,13 +1,16 @@
 ﻿using DotNetECommerce.ValueObject;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace DotNetECommerce.Domain.Members
 {
     public class Member : IAggregateRoot
     {
-        public MemberId MemberId { get; private set; }
+        [Key]
+        //public MemberId MemberId { get; private set; }
+        public string MemberId { get; private set; }
 
         public MailAddress MailAddress { get; private set; }
 
@@ -28,10 +31,12 @@ namespace DotNetECommerce.Domain.Members
             this.State = MemberState.Unregistered;
         }
 
+        protected Member() { }
+
         public void Delete()
         {
             if (State != MemberState.Registered)
-                throw new InvalidOperationException($"登録中以外のユーザーを退会させようとしました。：{MemberId.Value}");
+                throw new InvalidOperationException($"登録中以外のユーザーを退会させようとしました。：{MemberId}");
             this.State = MemberState.Deleted;
         }
     }

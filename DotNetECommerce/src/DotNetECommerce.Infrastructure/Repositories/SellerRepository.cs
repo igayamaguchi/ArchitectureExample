@@ -20,6 +20,11 @@ namespace DotNetECommerce.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
+        public int FindNewId()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Save(Seller seller, int administoratorId)
         {
             throw new NotImplementedException();
