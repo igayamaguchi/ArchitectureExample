@@ -1,5 +1,4 @@
 ﻿using DotNetECommerce.Domain.Members;
-using DotNetECommerce.Domain.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;

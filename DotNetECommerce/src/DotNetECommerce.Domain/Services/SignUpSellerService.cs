@@ -1,5 +1,4 @@
-﻿using DotNetECommerce.Domain.Models;
-using DotNetECommerce.Domain.Sellers;
+﻿using DotNetECommerce.Domain.Sellers;
 using System;
 using System.Collections.Generic;
 using System.Text;

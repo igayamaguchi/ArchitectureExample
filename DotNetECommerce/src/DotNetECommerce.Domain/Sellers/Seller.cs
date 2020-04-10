@@ -1,4 +1,4 @@
-﻿using DotNetECommerce.Domain.Models;
+﻿using DotNetECommerce.Domain.Administrators;
 using DotNetECommerce.Domain.Products;
 using System;
 using System.Collections.Generic;
@@ -20,24 +20,24 @@ namespace DotNetECommerce.Domain.Sellers
 
         public SellerState State { get; private set; }
 
-        public Administrator Administrator { get; private set; }
+        public int? AdministratorId { get; private set; }
 
         public IEnumerable<Product> Products;
 
-        protected Seller(int sellerId, string mailAddress, string representativeName, string companyName, string companyAddress, SellerState state, Administrator administrator)
+        protected Seller(int sellerId, string mailAddress, string representativeName, string companyName, string companyAddress, SellerState state)
         {
-            this.SellerId = SellerId;
+            this.SellerId = sellerId;
             this.MailAddress = mailAddress;
             this.representativeName = representativeName;
             this.companyName = companyName;
             this.companyAddress = companyAddress;
             this.State = state;
-            this.Administrator = administrator;
+            this.AdministratorId = null;
         }
 
         public static Seller SignUp(int sellerId, string mailAddress, string representativeName, string companyName, string companyAddress)
         {
-            return new Seller(sellerId, mailAddress, representativeName, companyName, companyAddress, SellerState.Applying, null);
+            return new Seller(sellerId, mailAddress, representativeName, companyName, companyAddress, SellerState.Applying);
         }
 
         public Seller Activate(Administrator administrator)
@@ -46,7 +46,7 @@ namespace DotNetECommerce.Domain.Sellers
             {
                 throw new InvalidOperationException("申請中ではないので承認できません。");
             }
-            Administrator = administrator;
+            AdministratorId = administrator.Id;
             State = SellerState.Available;
             return this;
         }

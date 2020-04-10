@@ -1,4 +1,4 @@
-﻿using DotNetECommerce.Domain.Repositories;
+﻿using DotNetECommerce.Domain.Members;
 using DotNetECommerce.Domain.Services;
 using DotNetECommerce.ValueObject;
 using System;
