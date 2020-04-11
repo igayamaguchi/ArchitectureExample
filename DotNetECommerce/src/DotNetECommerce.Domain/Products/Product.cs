@@ -7,7 +7,7 @@ namespace DotNetECommerce.Domain.Products
 {
     public class Product : IAggregateRoot
     {
-        public int ProductId { get; private set; }
+        public Guid ProductId { get; private set; }
 
         public string Name { get; private set; }
 
@@ -19,9 +19,9 @@ namespace DotNetECommerce.Domain.Products
 
         public ProductState State { get; private set; }
 
-        protected Product(int productId, string name, decimal price, int pointRate, Seller seller, ProductState state)
+        protected Product(string name, decimal price, int pointRate, Seller seller, ProductState state)
         {
-            this.ProductId = productId;
+            this.ProductId = Guid.NewGuid();
             this.Name = name;
             this.Price = price;
             this.PointRate = pointRate;
@@ -29,9 +29,9 @@ namespace DotNetECommerce.Domain.Products
             this.State = state;
         }
 
-        public static Product New(int productId, string name, decimal price, int pointRate, Seller seller)
+        public static Product New(string name, decimal price, int pointRate, Seller seller)
         {
-            return new Product(productId, name, price, pointRate, seller, ProductState.BeforeSale);
+            return new Product(name, price, pointRate, seller, ProductState.BeforeSale);
         }
 
         public Product Sell()

@@ -8,9 +8,9 @@ namespace DotNetECommerce.Domain.Members
 {
     public interface IMemberRepository
     {
-        Member FindBy(MemberId mailAddress);
+        Member Find(Guid memberId);
 
-        Member FindBy(MailAddress mailAddress);
+        Member Find(MailAddress mailAddress);
 
         Member Create(MailAddress mailAddress, Password password);
 

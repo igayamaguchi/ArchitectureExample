@@ -7,14 +7,14 @@ namespace DotNetECommerce.Application.Test.Utils
 {
     public class DummyProductRepository : IProductRepository
     {
-        private Dictionary<int, Product> dummy = new Dictionary<int, Product>();
+        private Dictionary<Guid, Product> dummy = new Dictionary<Guid, Product>();
 
         public void Create(Product product)
         {
             dummy.Add(product.ProductId, product);
         }
 
-        public Product FindBy(int id)
+        public Product Find(Guid id)
         {
             return dummy[id];
         }

@@ -32,7 +32,7 @@ namespace DotNetECommerce.Application
             {
                 throw new InvalidOperationException("管理者が見つかりません");
             }
-            var seller = sellerRepository.FindBy(sellerId);
+            var seller = sellerRepository.Find(sellerId);
 
             if (seller == null)
             {
@@ -46,7 +46,7 @@ namespace DotNetECommerce.Application
 
         public Seller Find(Guid sellerId)
         {
-            return sellerRepository.FindBy(sellerId);
+            return sellerRepository.Find(sellerId);
         }
     }
 }

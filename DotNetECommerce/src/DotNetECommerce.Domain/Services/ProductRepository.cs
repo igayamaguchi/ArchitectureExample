@@ -7,7 +7,7 @@ namespace DotNetECommerce.Domain.Services
 {
     public class ProductRepository : IProductRepository
     {
-        public Product FindBy(int id)
+        public Product Find(Guid id)
         {
             return null;
         }

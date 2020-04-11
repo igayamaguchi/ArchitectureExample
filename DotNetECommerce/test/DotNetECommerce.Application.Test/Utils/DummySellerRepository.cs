@@ -14,7 +14,7 @@ namespace DotNetECommerce.Application.Test.Utils
             dummy.Add(seller.SellerId, seller);
         }
 
-        public Seller FindBy(Guid sellerId)
+        public Seller Find(Guid sellerId)
         {
             return dummy[sellerId];
         }

@@ -24,27 +24,28 @@ namespace DotNetECommerce.Application
         /// </summary>
         public SellResult Sell(Guid sellerId, string productName, decimal productPrice, int productPointRate)
         {
-            var seller = sellerRepository.FindBy(sellerId);
+            var seller = sellerRepository.Find(sellerId);
 
-            if (seller == null || seller.State != SellerState.Available)
+            if (seller == null)
             {
-                // TODO: 承認済みでない場合のエラー
                 return new SellResult { Type = SellResultType.NotFound };
             }
 
-            // TODO: GUIDなどに
-            var productId = new Random().Next();
+            if (seller.State != SellerState.Available)
+            {
+                return new SellResult { Type = SellResultType.NotAvailableSeller };
+            }
 
-            var product = Product.New(productId, productName, productPrice, productPointRate, seller);
+            var product = Product.New(productName, productPrice, productPointRate, seller);
             product.Sell();
             productRepository.Create(product);
 
             return new SellResult { Type = SellResultType.Ok, Product = product };
         }
 
-        public FindResult FindBy(int productId)
+        public FindResult Find(Guid productId)
         {
-            var product = productRepository.FindBy(productId);
+            var product = productRepository.Find(productId);
 
             if (product == null)
             {
@@ -64,6 +65,7 @@ namespace DotNetECommerce.Application
     {
         Ok,
         NotFound,
+        NotAvailableSeller,
     }
 
     public class SellResult

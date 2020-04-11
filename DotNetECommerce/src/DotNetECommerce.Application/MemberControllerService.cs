@@ -23,7 +23,7 @@ namespace DotNetECommerce.Application
             var m = new MailAddress(mailAddress);
             var p = new Password(password);
 
-            var existMember = memberRepository.FindBy(m) != null;
+            var existMember = memberRepository.Find(m) != null;
 
             if (existMember)
             {
@@ -34,11 +34,10 @@ namespace DotNetECommerce.Application
             return SignUpResult.Success;
         }
 
-        public DeleteResult Delete(string memberId)
+        public DeleteResult Delete(Guid memberId)
         {
             // TODO: ログイン状態の確認
-            var id = new MemberId(memberId);
-            var member = memberRepository.FindBy(id);
+            var member = memberRepository.Find(memberId);
 
             if (member != null) return DeleteResult.NotExistMember;
 

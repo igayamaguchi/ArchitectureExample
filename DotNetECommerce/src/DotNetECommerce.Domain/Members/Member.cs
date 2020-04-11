@@ -10,7 +10,7 @@ namespace DotNetECommerce.Domain.Members
     {
         [Key]
         //public MemberId MemberId { get; private set; }
-        public string MemberId { get; private set; }
+        public Guid MemberId { get; private set; }
 
         public MailAddress MailAddress { get; private set; }
 

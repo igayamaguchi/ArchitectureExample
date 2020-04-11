@@ -15,6 +15,8 @@ namespace DotNetECommerce.Application.Test
         private readonly SellerControllerService sellerControllerservice;
         private readonly ProductControllerService productControllerservice;
 
+        private readonly Seller seller;
+
         public ProductControllerServiceTest()
         {
             var productRepository = new DummyProductRepository();
@@ -24,17 +26,17 @@ namespace DotNetECommerce.Application.Test
             administratorControllerservice = new AdministratorControllerService(administratorRepository);
             sellerControllerservice = new SellerControllerService(sellerRepository, administratorRepository);
             productControllerservice = new ProductControllerService(productRepository, sellerRepository);
+
+            var administrator = administratorControllerservice.Create();
+            var signUpSeller = sellerControllerservice.SignUp("test@example.com", "password", "representative name", "company name", "company address");
+            var seller = sellerControllerservice.Approve(signUpSeller.SellerId, administrator.Id);
         }
 
         [Fact]
         public void SaleTest()
         {
-            var administrator = administratorControllerservice.Create();
-            var signUpSeller = sellerControllerservice.SignUp("test@example.com", "password", "representative name", "company name", "company address");
-            var seller = sellerControllerservice.Approve(signUpSeller.SellerId, administrator.Id);
-
             var sellResult = productControllerservice.Sell(seller.SellerId, "product name", 1000, 5);
-            var findResult = productControllerservice.FindBy(sellResult.Product.ProductId);
+            var findResult = productControllerservice.Find(sellResult.Product.ProductId);
             Assert.Equal(ProductState.Sale, findResult.Product.State);
         }
     }

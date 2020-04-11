@@ -7,7 +7,7 @@ namespace DotNetECommerce.Domain.Products
 {
     public interface IProductRepository
     {
-        Product FindBy(int id);
+        Product Find(Guid id);
 
         void Create(Product product);
     }
