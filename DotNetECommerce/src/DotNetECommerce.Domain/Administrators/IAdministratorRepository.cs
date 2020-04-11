@@ -6,8 +6,7 @@ namespace DotNetECommerce.Domain.Administrators
 {
     public interface IAdministratorRepository
     {
-        int FindNewId();
         void Create(Administrator administrator);
-        Administrator FindBy(int id);
+        Administrator FindBy(Guid id);
     }
 }

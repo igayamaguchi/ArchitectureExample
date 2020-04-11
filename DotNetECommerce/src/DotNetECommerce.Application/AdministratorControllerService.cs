@@ -16,9 +16,7 @@ namespace DotNetECommerce.Application
 
         public Administrator Create()
         {
-            // TODO: GUIDに
-            var id = administratorRepository.FindNewId();
-            var administrator = new Administrator { Id = id };
+            var administrator = new Administrator();
             administratorRepository.Create(administrator);
             return administrator;
         }

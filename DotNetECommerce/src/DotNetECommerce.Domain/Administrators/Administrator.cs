@@ -6,6 +6,11 @@ namespace DotNetECommerce.Domain.Administrators
 {
     public class Administrator
     {
-        public int Id { get; set; }
+        public Guid Id { get; private set; }
+
+        public Administrator()
+        {
+            Id = Guid.NewGuid();
+        }
     }
 }

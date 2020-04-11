@@ -7,9 +7,8 @@ namespace DotNetECommerce.Domain.Sellers
 {
     public interface ISellerRepository
     {
-        int FindNewId();
-        Seller FindBy(int sellerId);
+        Seller FindBy(Guid sellerId);
         void Create(Seller seller, string password);
-        void Save(Seller seller, int administoratorId);
+        void Save(Seller seller, Guid administoratorId);
     }
 }

@@ -8,7 +8,7 @@ namespace DotNetECommerce.Domain.Sellers
 {
     public class Seller : IAggregateRoot
     {
-        public int SellerId { get; private set; }
+        public Guid SellerId { get; private set; }
 
         public string MailAddress { get; private set; }
 
@@ -20,13 +20,13 @@ namespace DotNetECommerce.Domain.Sellers
 
         public SellerState State { get; private set; }
 
-        public int? AdministratorId { get; private set; }
+        public Guid? AdministratorId { get; private set; }
 
         public IEnumerable<Product> Products;
 
-        protected Seller(int sellerId, string mailAddress, string representativeName, string companyName, string companyAddress, SellerState state)
+        protected Seller(string mailAddress, string representativeName, string companyName, string companyAddress, SellerState state)
         {
-            this.SellerId = sellerId;
+            this.SellerId = Guid.NewGuid();
             this.MailAddress = mailAddress;
             this.representativeName = representativeName;
             this.companyName = companyName;
@@ -35,9 +35,9 @@ namespace DotNetECommerce.Domain.Sellers
             this.AdministratorId = null;
         }
 
-        public static Seller SignUp(int sellerId, string mailAddress, string representativeName, string companyName, string companyAddress)
+        public static Seller SignUp(string mailAddress, string representativeName, string companyName, string companyAddress)
         {
-            return new Seller(sellerId, mailAddress, representativeName, companyName, companyAddress, SellerState.Applying);
+            return new Seller(mailAddress, representativeName, companyName, companyAddress, SellerState.Applying);
         }
 
         public Seller Activate(Administrator administrator)

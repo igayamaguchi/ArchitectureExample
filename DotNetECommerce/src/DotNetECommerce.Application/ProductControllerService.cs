@@ -22,7 +22,7 @@ namespace DotNetECommerce.Application
         /// <summary>
         /// 商品の販売
         /// </summary>
-        public SellResult Sell(int sellerId, string productName, decimal productPrice, int productPointRate)
+        public SellResult Sell(Guid sellerId, string productName, decimal productPrice, int productPointRate)
         {
             var seller = sellerRepository.FindBy(sellerId);
 

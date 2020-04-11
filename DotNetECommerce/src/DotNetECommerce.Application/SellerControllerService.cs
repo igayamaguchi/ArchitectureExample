@@ -19,13 +19,12 @@ namespace DotNetECommerce.Application
 
         public Seller SignUp(string mailAddress, string password, string representativeName, string companyName, string companyAddress)
         {
-            var newSellerId = sellerRepository.FindNewId();
-            var seller = Seller.SignUp(newSellerId, mailAddress, representativeName, companyName, companyAddress);
+            var seller = Seller.SignUp(mailAddress, representativeName, companyName, companyAddress);
             sellerRepository.Create(seller, password);
             return seller;
         }
 
-        public Seller Approve(int sellerId, int administratorId)
+        public Seller Approve(Guid sellerId, Guid administratorId)
         {
             var administrator = administratorRepository.FindBy(administratorId);
 

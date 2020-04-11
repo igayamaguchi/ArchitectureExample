@@ -13,17 +13,12 @@ namespace DotNetECommerce.Infrastructure.Repositories
             // TODO
         }
 
-        public Seller FindBy(int sellerId)
+        public Seller FindBy(Guid sellerId)
         {
             throw new NotImplementedException();
         }
 
-        public int FindNewId()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Save(Seller seller, int administoratorId)
+        public void Save(Seller seller, Guid administoratorId)
         {
             throw new NotImplementedException();
         }
