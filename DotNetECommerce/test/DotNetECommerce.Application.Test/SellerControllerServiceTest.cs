@@ -29,8 +29,10 @@ namespace DotNetECommerce.Application.Test
         public void TestSignUp()
         {
             var seller = sellerControllerService.SignUp("mailaddress@example.com", "password", "Michel", "Example Company", "Japan");
-            Assert.Equal(sellerRepository.FindBy(seller.SellerId), seller);
-            Assert.Equal(SellerState.Applying, seller.State);
+            var signedUpSeller = sellerControllerService.Find(seller.SellerId);
+
+            Assert.Equal(seller, signedUpSeller);
+            Assert.Equal(SellerState.Applying, signedUpSeller.State);
         }
 
         [Fact]
@@ -39,9 +41,9 @@ namespace DotNetECommerce.Application.Test
             var administrator = administratorControllerService.Create();
             var seller = sellerControllerService.SignUp("mailaddress@example.com", "password", "Michel", "Example Company", "Japan");
             sellerControllerService.Approve(seller.SellerId, administrator.Id);
-            var actualSeller = sellerRepository.FindBy(seller.SellerId);
-            Assert.Equal(seller, actualSeller);
-            Assert.Equal(SellerState.Available, actualSeller.State);
+            var approvedSeller = sellerControllerService.Find(seller.SellerId);
+            Assert.Equal(seller, approvedSeller);
+            Assert.Equal(SellerState.Available, approvedSeller.State);
         }
     }
 }

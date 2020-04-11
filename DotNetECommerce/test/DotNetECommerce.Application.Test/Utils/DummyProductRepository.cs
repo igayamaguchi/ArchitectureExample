@@ -7,7 +7,7 @@ namespace DotNetECommerce.Application.Test.Utils
 {
     public class DummyProductRepository : IProductRepository
     {
-        private static Dictionary<int, Product> dummy = new Dictionary<int, Product>();
+        private Dictionary<int, Product> dummy = new Dictionary<int, Product>();
 
         public void Create(Product product)
         {

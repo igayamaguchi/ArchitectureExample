@@ -43,5 +43,10 @@ namespace DotNetECommerce.Application
             sellerRepository.Save(seller, administratorId);
             return seller;
         }
+
+        public Seller Find(Guid sellerId)
+        {
+            return sellerRepository.FindBy(sellerId);
+        }
     }
 }
